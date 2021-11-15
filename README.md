@@ -11,26 +11,34 @@ Please check the [official documentation of Moralis](https://docs.moralis.io/#us
 ![Dapp](https://user-images.githubusercontent.com/78314301/140835102-0f3b2549-e199-47aa-bc60-f6b601bd79e9.gif)
 
 # ⭐️ `Star us`
+
 If this boilerplate helps you build Ethereum dapps faster - please star this project, every star makes us very happy!
 
 # 🚀 Quick Start
 
 📄 Clone or fork `ethereum-boilerplate`:
+
 ```sh
 git clone https://github.com/ethereum-boilerplate/ethereum-boilerplate.git
 ```
+
 💿 Install all dependencies:
+
 ```sh
 cd ethereum-boilerplate
-yarn install 
+yarn install
 ```
-✏ Rename `.env.example` to `.env` in the main folder and provide your `appId` and `serverUrl` from Moralis ([How to start Moralis Server](https://docs.moralis.io/moralis-server/getting-started/create-a-moralis-server)) 
+
+✏ Rename `.env.example` to `.env` in the main folder and provide your `appId` and `serverUrl` from Moralis ([How to start Moralis Server](https://docs.moralis.io/moralis-server/getting-started/create-a-moralis-server))
 Example:
+
 ```jsx
 REACT_APP_MORALIS_APPLICATION_ID = xxxxxxxxxxxx
 REACT_APP_MORALIS_SERVER_URL = https://xxxxxx.grandmoralis.com:2053/server
 ```
+
 🚴‍♂️ Run your App:
+
 ```sh
 yarn start
 ```
@@ -53,8 +61,8 @@ yarn start
   - [`<NativeBalance />`](#nativebalance-)
   - [`<Contract />`](#contract-)
 - [🧰 Ethereum Hooks](#-ethereum-hooks)
-  - [`useAPIContract()`](#useapicontract)  
-  - [`useWeb3Contract()`](#useweb3contract)  
+  - [`useAPIContract()`](#useapicontract)
+  - [`useWeb3Contract()`](#useweb3contract)
   - [`useERC20Balance()`](#useerc20balance)
   - [`useERC20Transfers()`](#useerc20transfers)
   - [`useNativeBalance()`](#usenativebalance)
@@ -69,31 +77,30 @@ yarn start
 
 # 🏗 Ethereum Components
 
-🛠 The ready for use react-components are located in `src/components`. They are designed to be used anywhere in your dApp. 
+🛠 The ready for use react-components are located in `src/components`. They are designed to be used anywhere in your dApp.
 
 > ⚡ Note that many components may get params like `chain`, `address`, `size` and etc.
-
 
 ### `<Account />`
 
 ![Account](https://user-images.githubusercontent.com/78314301/141354253-4a040fbc-bf80-4665-af54-98b2f2d8ce7d.gif)
 
-📒 `<Account />` : Easy web3 authentication via MetaMask. 
+📒 `<Account />` : Easy web3 authentication via MetaMask.
 
 ```jsx
 <Account />
 ```
 
-
 ### `<Address />`
 
 ![address](https://user-images.githubusercontent.com/78314301/138753150-aefb426c-9481-4f41-91a3-d4e4fd424b8f.gif)
 
-📨 `<Address />` : Displays an Ethereum address with [Blockie](https://www.npmjs.com/package/react-blockies) avatar. 
+📨 `<Address />` : Displays an Ethereum address with [Blockie](https://www.npmjs.com/package/react-blockies) avatar.
 
 **Options**:
-- copyable (optional): display icon for copying. 
-- avatar (optional): display blockie avatar. 
+
+- copyable (optional): display icon for copying.
+- avatar (optional): display blockie avatar.
 - size (optional): text size.
 
 ```jsx
@@ -103,7 +110,6 @@ yarn start
 <Address avatar copyable size="4"  />
 ```
 
-
 ### `<AddressInput />`
 
 ![addressInput](https://user-images.githubusercontent.com/78314301/141116003-ad08dbe0-f06f-4718-be54-0c5990103510.gif)
@@ -111,16 +117,20 @@ yarn start
 📫 `<AddressInput />` : Input for eth address. Displays [Blockie](https://www.npmjs.com/package/react-blockies) avatar for the entered wallet. Helps to validate addresses. After entering 42 characters (wallet length) freezes inout and calls `setValidatedAddress`
 
 **Options**:
-- autoFocus (optional): focuses object after rendering the component. 
+
+- autoFocus (optional): focuses object after rendering the component.
 - placeholder (optional): text to display before entering address.
 - onChange (required): your setState hook.
 
 ```jsx
 const [address, setAddress] = useState();
 
-<AddressInput autoFocus placeholder="Input your Address" onChange={setAddress} />
+<AddressInput
+  autoFocus
+  placeholder="Input your Address"
+  onChange={setAddress}
+/>;
 ```
-
 
 ### `<Chains />`
 
@@ -129,12 +139,12 @@ const [address, setAddress] = useState();
 ⛓ `<Chains />` : Active network switch. Supports Ethereum, Polygon, BSC and Avalacnhe blockchains. Works only with networks that have already been added to Injected Wallet. You can find a guide on how to programmatically add a new network [here](https://docs.moralis.io/moralis-server/web3/web3#addnetwork). Easily customizable, you can add other networks
 
 **Options**:
+
 - props (optional): networks to display. Added by default: polygon, eth, bsc and avalanche
 
 ```jsx
 <Chains polygon eth bsc avalanche />
 ```
-
 
 ### `<CoinPrice />`
 
@@ -143,7 +153,8 @@ const [address, setAddress] = useState();
 💵 `<CoinPrice />` : displays the price of the token specified in the settings. Uses Moralis Web3API (does not require an active web3 provider).
 
 **Options**:
-- address (required): Token contract address 
+
+- address (required): Token contract address
 - chain (optional): The network to which the token is deployed. Default: ETH
 - image (optional): local path or link to token logo
 - size (optional): logo size
@@ -159,12 +170,12 @@ const [address, setAddress] = useState();
 💰 `<ERC20Balance />` : displays the ERC20 balance of an address. Uses Moralis Web3API (does not require an active web3 provider).
 
 **Options**:
+
 - chain (optional): network for displaying balances on. Will use your wallet network if you do not specify `chain` yourself
 
 ```jsx
 <ERC20Balance chain="polygon" />
 ```
-
 
 ### `<ERC20Transfers />`
 
@@ -173,39 +184,38 @@ const [address, setAddress] = useState();
 💸 `<ERC20Transfers />` : displays the ERC20 transfers of an address. Uses Moralis Web3API (does not require an active web3 provider).
 
 **Options**:
+
 - chain (optional): network for displaying transfers on. Will use your wallet network if you do not specify `chain` yourself
 
 ```jsx
 <ERC20Transfers chain="polygon" />
 ```
 
-### `<DEX />` 
+### `<DEX />`
 
 ![dex](https://user-images.githubusercontent.com/78314301/141123450-02c2710e-7988-45de-80ad-5fc45d2bccfa.gif)
 
 💱 `<InchDex />` : interface for [Moralis 1Inch Plugin](https://moralis.io/plugins/1inch?utm_source=github&utm_medium=readme&utm_campaign=ethereum-boilerplate). This plugin integrates the DeFi / DEX aggregator 1Inch to any project that uses Moralis.
 
 **Options**:
+
 - chain (optional): network. Available: Ethereum (“eth”), Binance Smart Chain (“bsc”), Polygon (“polygon”)
 
 ```jsx
 <InchDex chain="eth" />
 ```
 
-
 ### `<Wallet />`
 
 ![wallet](https://user-images.githubusercontent.com/78314301/141115062-7152ed11-6167-45fe-a4d9-50e78f051838.gif)
 
-💼 `<Wallet />` : example interface for interacting with your wallet. Uses components from the boilerplate:  `<Blockie />`, `<Address />`, `<NativeBalance />`, `<AddressInput />`. Has the functionality to send tokens
+💼 `<Wallet />` : example interface for interacting with your wallet. Uses components from the boilerplate: `<Blockie />`, `<Address />`, `<NativeBalance />`, `<AddressInput />`. Has the functionality to send tokens
 
 ```jsx
 <Wallet />
 ```
 
-
-### `<Blockie />` 
-
+### `<Blockie />`
 
 ### `<NativeBalance />`
 
@@ -218,6 +228,7 @@ const [address, setAddress] = useState();
 📋 Runs a given function of a contract abi and returns readonly data. Uses Moralis Web3API (does not require an active web3 provider).
 
 **Options**:
+
 - `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value Eth.
 - `functionName` (required): The function name
 - `address` (required): A smart contract address
@@ -225,6 +236,7 @@ const [address, setAddress] = useState();
 - `params` (optional): Parameters needed for your specific function
 
 **Example**:
+
 ```jsx
 const ShowUniswapObserveValues = () => {
   const { runContractFunction, contractResponse, error, isLoading } = useAPIContract({
@@ -250,6 +262,7 @@ const ShowUniswapObserveValues = () => {
 📋 Runs on-chain functions. Requires active Web3 Provider.
 
 **Options**:
+
 - `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value Eth.
 - `functionName` (required): The function name
 - `contractAddress` (required): A smart contract address
@@ -257,6 +270,7 @@ const ShowUniswapObserveValues = () => {
 - `params` (optional): Parameters needed for your specific function
 
 **Example**:
+
 ```jsx
 const ShowUniswapObserveValues = () => {
   const { runContractFunction, contractResponse, error, isRunning, isLoading } = useWeb3Contract({
@@ -277,11 +291,12 @@ const ShowUniswapObserveValues = () => {
 }
 ```
 
-### `useERC20Balance()` 
+### `useERC20Balance()`
 
-💰 Gets all token balances of a current user or specified address. 
+💰 Gets all token balances of a current user or specified address.
 
 **Options**:
+
 - `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: current chain.
 - `address` (optional): A user address (i.e. 0x1a2b3x...). If specified, the user attached to the query is ignored and the address will be used instead.
 - `to_block` (optional): The block number on which the balances should be checked
@@ -289,18 +304,19 @@ const ShowUniswapObserveValues = () => {
 **Returns** (Object) : number of tokens and the array of token objects
 
 ```jsx
-const { fetchERC20Balance, assets } = useERC20Balance({ chain : "eth" });
+const { fetchERC20Balance, assets } = useERC20Balance({ chain: "eth" });
 ```
 
-### `useERC20Transfers()` 
+### `useERC20Transfers()`
 
-🧾 Gets ERC20 token transfers of a current user or specified address. 
+🧾 Gets ERC20 token transfers of a current user or specified address.
 
 **Options**:
+
 - `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: current chain.
 - `address` (optional): A user address (i.e. 0x1a2b3x...). If specified, the user attached to the query is ignored and the address will be used instead.
 - `from_date` (optional): The date from where to get the transactions (any format that is accepted by momentjs). Provide the param 'from_block' or 'from_date' If 'from_date' and 'from_block' are provided, 'from_block' will be used.
-- `to_date` (optional):  Get the transactions to this date (any format that is accepted by momentjs). Provide the param 'to_block' or 'to_date' If 'to_date' and 'to_block' are provided, 'to_block' will be used.
+- `to_date` (optional): Get the transactions to this date (any format that is accepted by momentjs). Provide the param 'to_block' or 'to_date' If 'to_date' and 'to_block' are provided, 'to_block' will be used.
 - `from_block` (optional): The minimum block number from where to get the transactions Provide the param 'from_block' or 'from_date' If 'from_date' and 'from_block' are provided, 'from_block' will be used.
 - `to_block` (optional): The maximum block number from where to get the transactions. Provide the param 'to_block' or 'to_date' If 'to_date' and 'to_block' are provided, 'to_block' will be used.
 - `offset` (optional): Offset.
@@ -309,14 +325,17 @@ const { fetchERC20Balance, assets } = useERC20Balance({ chain : "eth" });
 **Returns** (Array) : ERC20 token transfers
 
 ```jsx
-const { fetchERC20Transfers, ERC20Transfers } = useERC20Transfers({ chain : "eth" });
+const { fetchERC20Transfers, ERC20Transfers } = useERC20Transfers({
+  chain: "eth",
+});
 ```
 
-### `useNativeBalance()` 
+### `useNativeBalance()`
 
 💰 Gets native balance for a current user or specified address. The `nativeName` from `useNativeBalance()` shows name of chain(Example: "BNB", "ETH", ...)
 
 **Options**:
+
 - `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: current chain.
 - `address` (optional): A user address (i.e. 0x1a2b3x...). If specified, the user attached to the query is ignored and the address will be used instead.
 - `to_block` (optional): The block number on which the balances should be checked
@@ -324,24 +343,25 @@ const { fetchERC20Transfers, ERC20Transfers } = useERC20Transfers({ chain : "eth
 **Returns** (Object) : { inWei: balance in Wei , formatted: balance in Eth style }
 
 **Example**:
+
 ```jsx
 function NativeBalance() {
-  const { getBalance, balance, nativeName, error, isLoading } = useNativeBalance({ chain : "eth" });
-  return (
-    <div>{`${balance.formatted} ${nativeName}`}</div>
-  );
+  const { getBalance, balance, nativeName, error, isLoading } =
+    useNativeBalance({ chain: "eth" });
+  return <div>{`${balance.formatted} ${nativeName}`}</div>;
 }
 ```
 
-### `useNativeTransactions()` 
+### `useNativeTransactions()`
 
-🧾 Gets the transactions from the current user or specified address. Returns an object with the number of transactions  and the array of native transactions 
+🧾 Gets the transactions from the current user or specified address. Returns an object with the number of transactions and the array of native transactions
 
 **Options**:
+
 - `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: current chain.
 - `address` (optional): A user address (i.e. 0x1a2b3x...). If specified, the user attached to the query is ignored and the address will be used instead.
 - `from_date` (optional): The date from where to get the transactions (any format that is accepted by momentjs). Provide the param 'from_block' or 'from_date' If 'from_date' and 'from_block' are provided, 'from_block' will be used.
-- `to_date` (optional):  Get the transactions to this date (any format that is accepted by momentjs). Provide the param 'to_block' or 'to_date' If 'to_date' and 'to_block' are provided, 'to_block' will be used.
+- `to_date` (optional): Get the transactions to this date (any format that is accepted by momentjs). Provide the param 'to_block' or 'to_date' If 'to_date' and 'to_block' are provided, 'to_block' will be used.
 - `from_block` (optional): The minimum block number from where to get the transactions Provide the param 'from_block' or 'from_date' If 'from_date' and 'from_block' are provided, 'from_block' will be used.
 - `to_block` (optional): The maximum block number from where to get the transactions. Provide the param 'to_block' or 'to_date' If 'to_date' and 'to_block' are provided, 'to_block' will be used.
 - `offset` (optional): Offset.
@@ -349,15 +369,14 @@ function NativeBalance() {
 
 **Returns** (Array) : native transactions
 
-### `useNFTBalance()` 
+### `useNFTBalance()`
 
-### `useNFTTransfers()` 
+### `useNFTTransfers()`
 
-### `useChain()` 
+### `useChain()`
 
-### `useInchDex()` 
+### `useInchDex()`
 
-### `useTokenPrice()` 
+### `useTokenPrice()`
 
-### `useIPFS()` 
-# demo-surgemoon
+### `useIPFS()`
