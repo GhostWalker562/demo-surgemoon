@@ -56,7 +56,7 @@ export default function QuickStart({ isServerInfo }) {
       <Col>
         <img
           alt="pikachu"
-          src="https://i.pinimg.com/originals/df/87/e6/df87e6cd651457c032375e43f68ca34e.png"
+          src="https://ipfs.pixura.io/ipfs/QmfGxNrvDYACYERYSKBApe9gYZxdUMoSa7PHafRwLMtHbq/Antaeushinowater.jpg"
           height={600}
         />
         <h1>
